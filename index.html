@@ -2,33 +2,80 @@
 <html lang="en">                     <!-- Root element, lang="en" specifies English language -->
 <head>                               <!-- Contains metadata about the page (not visible) -->
     <meta charset="UTF-8">             <!-- Sets character encoding for special characters -->
-    <title>Module 1</title>            <!-- Title that appears in browser tab -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">  <!-- Load Google Fonts -->
-    <link rel="stylesheet" href="style.css">  <!-- Links to our CSS file for styling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Makes layout responsive on mobile -->
+    <title>Data Against Feminicide — Precedent Study</title>  <!-- Title shown in the browser tab -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">  <!-- Load Google Fonts (Roboto) -->
+    <link rel="stylesheet" href="style.css">  <!-- Link to our CSS file for styling -->
 </head>
-<body>                               <!-- Contains all visible content on the page -->
-    <header>                           <!-- Header section for navigation/branding -->
-    <div class="left">Precedent Study</div>  <!-- Left side of header with institution name -->
-    <div class="center">             <!-- Center section of header -->
-        Data Against Feminicide<br>    <!-- Main title with line break -->
-        <span>Methods As Practices</span>   <!-- Subtitle in smaller text -->
-    </div>
-    <div class="right"><a href="#">About</a></div>  <!-- Right side with navigation link -->
+<body>
+    <!-- ===== Header: site name, project title, and About link ===== -->
+    <header>
+        <div class="left">Precedent Study</div>  <!-- Left side of header with institution name -->
+        <div class="center">                     <!-- Center section with project title/subtitle -->
+            Data Against Feminicide<br>
+            <span>Methods As Practices</span>
+        </div>
+        <div class="right"><a href="#">About</a></div>  <!-- Right side navigation link -->
     </header>
 
-<main>                             <!-- Main content area of the page -->
-    <div class="project-meta">2026</div>     <!-- Project year/date -->
-    <div class="project-title">About</div>  <!-- Main project title -->
-    <div class="project-subtitle">Bibliography</div>  <!-- Student name as subtitle -->
-    
-    #Remove 
-    <!-- Content sections -->
-    <div class="section-title">Interactive Demo</div>  <!-- Section heading -->
-    <p>Click the button below to see JavaScript in action:</p>  <!-- Instructions for user -->
-    <button id="demoButton">Click Me!</button>  <!-- Interactive button with unique ID -->
-    <div id="messageDisplay"></div>  <!-- Empty container for JavaScript to fill with messages -->
-</main>
+    <main>
+        <!-- ===== Page intro: year, page title, page subtitle ===== -->
+        <div class="project-meta">2026</div>          <!-- Project year -->
+        <div class="project-title">Precedent Study</div>        <!-- Main page heading -->
+        <div class="project-subtitle">Bibliography</div>  <!-- Page subheading -->
 
-    <script src="script.js"></script>  <!-- Links to our JavaScript file for interactivity -->
+        <!-- ===== Collaborators: project team with their countries ===== -->
+        <div class="section-title">Collaborators</div>
+        <ul class="people-list">  <!-- Each <li> is one team member: name + country code badge -->
+            <li><span class="person-name">Isadora Cruxên</span><span class="person-country">GB</span></li>
+            <li><span class="person-name">Catherine D’Ignazio</span><span class="person-country">US</span></li>
+            <li><span class="person-name">Silvana Fumega</span><span class="person-country">AR</span></li>
+            <li><span class="person-name">Helena Suárez Val</span><span class="person-country">UY</span></li>
+        </ul>
+
+        <!-- ===== Bibliography: two side-by-side citation lists ===== -->
+        <div class="section-title">Bibliography</div>
+        <div class="bib-columns">  <!-- Grid wrapper that lays the two columns side by side -->
+
+            <!-- Column 1: writing authored by the collaborators themselves -->
+            <section class="bib-column">
+                <h3 class="bib-column-title">By Collaborators</h3>
+                <p class="bib-column-note">Writing authored by the project's collaborators.</p>
+                <div class="csl-bib-body" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">  <!-- Citations pasted in from Zotero/reference manager -->
+                    <div class="csl-entry" style="margin-bottom: 1em;">“8. Data Against Feminicide: The Process and Impact of Co-Designing Digital Research Tools The Process and Impact of Co-Designing Digital Research Tools from Collaborative Research in the Datafied Society: Methods and Practices for Investigation and Intervention on JSTOR.” Accessed July 2, 2026. https://www.jstor.org/content/oa_chapter_edited/jj.18108223.13?seq=1.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">Crossref. “Crossref.” Accessed July 2, 2026. https://record.crossref.org/.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">D’Ignazio, Catherine, Isadora Cruxên, Angeles Martinez Cuba, Helena Suárez Val, Amelia Dogan, and Natasha Ansari. “Geographies of Missing Data: Spatializing Counterdata Production against Feminicide.” <i>Environment and Planning D: Society and Space</i> 43, no. 1 (2025): 29–50. https://doi.org/10.1177/02637758241275961.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">D’Ignazio, Catherine, Isadora Cruxên, Helena Suárez Val, et al. “Feminicide and Counterdata Production: Activist Efforts to Monitor and Challenge Gender-Related Violence.” <i>Patterns</i> 3, no. 7 (2022): 100530. https://doi.org/10.1016/j.patter.2022.100530.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">D’Ignazio, Catherine, Isadora Cruxên, Helena Suárez Val, et al. “Feminicide and Counterdata Production: Activist Efforts to Monitor and Challenge Gender-Related Violence.” <i>Patterns (New York, N.Y.)</i> 3, no. 7 (2022): 100530. https://doi.org/10.1016/j.patter.2022.100530.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">D’Ignazio (she/ella), Catherine. “Feminicide Data, Emotional Labor and Self-Care.” <i>Data + Feminism Lab, MIT</i>, July 18, 2023. https://medium.com/data-feminism-lab-mit/feminicide-data-emotional-labor-and-self-care-a3337bcd22c7.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">D’Ignazio (she/ella), Catherine. “Wrapping up Four Years of Work on Gender Violence and Citizen Data Science — Our NSF Project….” <i>Data + Feminism Lab, MIT</i>, June 15, 2026. https://medium.com/data-feminism-lab-mit/wrapping-up-four-years-of-work-on-gender-violence-and-citizen-data-science-our-nsf-project-540054ccc07d.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">Feminicidio, Datos Contra. “Datos Contra Feminicidio (DcF): ¿qué nos puede aportar la experiencia de América Latina? (Fumega &amp; Cervantes, 2025).” <i>Datos Contra Feminicidio</i>, April 3, 2026. https://datoscontrafeminicidio.net/datos-contra-feminicidio-dcf-que-nos-puede-aportar-la-experiencia-de-america-latina-fumega-cervantes-2025/.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">Fumega, Silvana. “Data Against Feminicide: Confronting Stereotypes and Silences with Feminist Data Work.” In <i>Women and Criminal Justice in Latin America: Between Victimization and Criminalization</i>, edited by Corina Giacomello. Springer Nature Switzerland, 2026. https://doi.org/10.1007/978-3-032-10883-8_5.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">Gao, Yujia, Isadora Araujo Cruxên, Helena Suárez Val, Alessandra Jungs De Almeida, Catherine D’Ignazio, and Harini Suresh. “Reimagining Data Work: Participatory Annotation Workshops as Feminist Practice.” <i>Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems</i>, April 13, 2026, 1–17. https://doi.org/10.1145/3772318.3791132.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">Google Docs. “2025-24 Fumega&amp;Cervantes.Pdf.” Accessed July 2, 2026. https://drive.google.com/file/d/1Hn0z97ScSZP3j5b94ouYo6nMgqDWlyiM/view?usp=embed_facebook.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">Isadora Cruxên. “Data Activism &amp; Participatory AI against Feminicide.” Accessed July 2, 2026. https://www.isadoracruxen.com/projects/dataactivism.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;">Suresh, Harini, Rajiv Movva, Amelia Lee Dogan, et al. “Towards Intersectional Feminist and Participatory ML: A Case Study in Supporting Feminicide Counterdata Collection.” <i>2022 ACM Conference on Fairness Accountability and Transparency</i>, June 21, 2022, 667–78. https://doi.org/10.1145/3531146.3533132.</div>
+                    <div class="csl-entry" style="margin-bottom: 1em;"><i>Tecnologia e Ativistas de Dados Contra o Feminicídio</i>. August 30, 2023. https://catarinas.info/tecnologia-e-ativistas-de-dados-contra-o-feminicidio/.</div>
+                    <div class="csl-entry">Unilak, Ebook. <i>The Routledge International Handbook On Femicide And Femicine</i>. n.d. Accessed July 2, 2026. https://fliphtml5.com/bblos/iras/The_Routledge_International_Handbook_On_Femicide_And_Femicine/.</div>
+                </div>
+            </section>
+
+            <!-- Column 2: external coverage of the collaborators' projects -->
+            <!-- Replace these 3 placeholder entries with real citations; -->
+            <!-- drop the "csl-entry--placeholder" class once real text is in -->
+            <section class="bib-column">
+                <h3 class="bib-column-title">About the Projects</h3>
+                <p class="bib-column-note">External writing about the collaborators' projects.</p>
+                <div class="csl-bib-body csl-bib-body--placeholder" style="line-height: 1.35; margin-left: 2em; text-indent:-2em;">
+                    <div class="csl-entry csl-entry--placeholder" style="margin-bottom: 1em;">Author Last Name, First Name. “Article Title Goes Here.” <i>Publication Name</i>, Month Day, Year. https://example.com/replace-with-url.</div>
+                    <div class="csl-entry csl-entry--placeholder" style="margin-bottom: 1em;">Author Last Name, First Name. “Article Title Goes Here.” <i>Publication Name</i>, Month Day, Year. https://example.com/replace-with-url.</div>
+                    <div class="csl-entry csl-entry--placeholder">Author Last Name, First Name. “Article Title Goes Here.” <i>Publication Name</i>, Month Day, Year. https://example.com/replace-with-url.</div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>  <!-- Link to our JS file (currently just a hook for future use) -->
 </body>
 </html>
