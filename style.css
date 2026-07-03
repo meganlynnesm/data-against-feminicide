@@ -1,11 +1,64 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');  /* Import Google Fonts */
 
+* {                                  /* Target every element on the page */
+  box-sizing: border-box;             /* Include padding/border in an element's width instead of adding to it */
+}
+
 body {                              /* Target the entire page body */
   font-family: 'Roboto', sans-serif;  /* Set the font to Roboto, with sans-serif as backup */
-  background-color: #111;          /* Set background color to white */
-  color: rgb(216, 18, 157);                        /* Set text color to dark gray (almost black) */
+  font-weight: 300;                   /* Set default text thickness to light */
+  background-color: #111;             /* Set background color to near-black */
+  color: rgb(216, 18, 157);           /* Set text color to pink */
   margin: 0;                          /* Remove default spacing around the body */
   padding: 0;                         /* Remove default internal spacing */
+}
+
+/* Header */
+
+header {                             /* Target the top header bar */
+  display: flex;                      /* Lay out header items in a row */
+  align-items: flex-start;            /* Align items to the top of the row */
+  justify-content: space-between;     /* Push items to left, center, and right */
+  gap: 24px;                          /* Add space between items */
+  padding: 24px 20px;                 /* Add 24px top/bottom, 20px left/right spacing inside */
+  border-bottom: 1px solid #2a2a2a;   /* Add a thin line under the header */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  letter-spacing: 0.02em;             /* Add slight space between letters */
+}
+
+header .left,                        /* Target the left and right header items together */
+header .right {
+  flex: 0 0 auto;                     /* Keep natural size, don't stretch or shrink */
+  padding-top: 2px;                   /* Nudge down slightly to align with center text */
+}
+
+header .right a {                    /* Target the "About" link */
+  color: rgb(216, 18, 157);           /* Set link color to match body text */
+  text-decoration: none;              /* Remove the default underline */
+  border-bottom: 1px solid transparent;  /* Reserve space for an underline on hover */
+}
+
+header .right a:hover,               /* Target the link when hovered or keyboard-focused */
+header .right a:focus-visible {
+  border-bottom-color: rgb(216, 18, 157);  /* Show underline on hover/focus */
+}
+
+header .center {                     /* Target the center header block (project title) */
+  flex: 1 1 auto;                     /* Grow to fill the space between left and right */
+  text-align: center;                 /* Center the text */
+  font-weight: 700;                   /* Make the text bold */
+  text-transform: uppercase;          /* Convert text to all capital letters */
+  line-height: 1.5;                   /* Add space between lines of text */
+}
+
+header .center span {                /* Target the subtitle inside the center block */
+  display: inline-block;              /* Allow margin-top to apply */
+  margin-top: 2px;                    /* Add small space above */
+  font-weight: 300;                   /* Make the text light instead of bold */
+  text-transform: none;               /* Turn off the uppercase from the parent */
+  color: #999;                        /* Set text color to muted grey */
+  font-size: 12px;                    /* Set font size to 12 pixels */
+  letter-spacing: 0.03em;             /* Add slight space between letters */
 }
 
 main {                               /* Target the main content area */
@@ -14,31 +67,128 @@ main {                               /* Target the main content area */
   padding: 0 20px;                    /* Add 20px left/right padding, no top/bottom */
 }
 
+.project-meta {                      /* Target the year label, e.g. "2026" */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  color: #999;                        /* Set text color to muted grey */
+  letter-spacing: 0.05em;             /* Add slight space between letters */
+}
+
+.project-title {                     /* Target the main page heading, e.g. "About" */
+  font-size: 44px;                    /* Set font size to 44 pixels */
+  font-weight: 700;                   /* Make the text bold */
+  line-height: 1.1;                   /* Keep lines close together */
+  margin-top: 8px;                    /* Add small space above */
+}
+
+.project-subtitle {                  /* Target the page subheading, e.g. "Bibliography" */
+  font-size: 18px;                    /* Set font size to 18 pixels */
+  font-weight: 300;                   /* Make the text light */
+  color: #999;                        /* Set text color to muted grey */
+  margin-top: 6px;                    /* Add small space above */
+}
+
 .section-title {                      /* Target elements with class="section-title" */
   font-weight: 700;                   /* Make the text bold */
   text-transform: uppercase;          /* Convert text to all capital letters */
-  margin-top: 40px;                   /* Add 40 pixels of space above this element */
-  margin-bottom: 12px;                /* Add 12 pixels of space below this element */
-  font-size: 14px;                    /* Set font size to 14 pixels */
+  margin-top: 56px;                   /* Add 56 pixels of space above this element */
+  margin-bottom: 16px;                /* Add 16 pixels of space below this element */
+  padding-bottom: 8px;                /* Add 8 pixels of space inside, below the text */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  letter-spacing: 0.08em;             /* Add space between letters */
+  border-bottom: 1px solid #2a2a2a;   /* Add a thin line below the section label */
 }
 
-button {                              /* Target all button elements */
-  background-color: white;             /* Set button background to dark gray */
-  color: #111;                       /* Set button text color to white */
-  border: none;                       /* Remove the default button border */
-  padding: 12px 24px;                 /* Add 12px top/bottom, 24px left/right spacing inside */
-  cursor: pointer;                    /* Change mouse cursor to hand when hovering over button */
-  transition: background-color 0.3s;  /* Smooth color change animation (0.3 seconds) */
+/* Collaborators list */
+
+.people-list {                       /* Target the list of collaborators */
+  list-style: none;                   /* Remove the default bullet points */
+  margin: 0;                          /* Remove default spacing */
+  padding: 0;                         /* Remove default spacing */
 }
 
-button:hover {                        /* Apply styles when user hovers over button */
-  background-color: rgb(216, 18, 157);             /* Change background to lighter gray on hover */
+.people-list li {                    /* Target each person row in the list */
+  display: flex;                      /* Put name and badge on the same row */
+  align-items: baseline;              /* Align text of name and badge */
+  justify-content: space-between;     /* Push name left, badge right */
+  padding: 12px 0;                    /* Add 12px spacing above/below each row */
+  border-bottom: 1px solid #2a2a2a;   /* Add a thin divider line under each row */
+  font-size: 15px;                    /* Set font size to 15 pixels */
+  font-weight: 300;                   /* Make the text light */
 }
 
-#messageDisplay {                     /* Target element with id="messageDisplay" */
-  margin-top: 20px;                   /* Add 20 pixels of space above this element */
-  padding: 16px;                      /* Add 16 pixels of spacing inside the element */
-  border: 1px solid #ccc;             /* Add a light gray border around the element */
-  background-color: #f9f9f9;          /* Set background color to very light gray */
-  min-height: 20px;                   /* Set minimum height so the area is visible even when empty */
+.people-list li:first-child {        /* Target only the first person in the list */
+  padding-top: 0;                     /* Remove extra space above the first row */
+}
+
+.person-country {                    /* Target the country code badge, e.g. "US" */
+  font-size: 11px;                    /* Set font size to 11 pixels */
+  font-weight: 700;                   /* Make the text bold */
+  letter-spacing: 0.08em;             /* Add space between letters */
+  color: #111;                        /* Set text color to near-black */
+  background-color: rgb(216, 18, 157);  /* Set background color to pink */
+  padding: 3px 8px;                   /* Add small spacing inside the badge */
+}
+
+/* Bibliography grid */
+
+.bib-columns {                       /* Target the wrapper holding both bibliography lists */
+  display: grid;                      /* Arrange children into a grid */
+  grid-template-columns: 1fr 1fr;     /* Create 2 equal-width columns */
+  gap: 48px;                          /* Add space between the two columns */
+}
+
+.bib-column-title {                  /* Target each column's heading, e.g. "By Collaborators" */
+  font-size: 15px;                    /* Set font size to 15 pixels */
+  font-weight: 700;                   /* Make the text bold */
+  margin: 0 0 4px 0;                  /* Add small space below only */
+}
+
+.bib-column-note {                   /* Target the short description under each column heading */
+  font-size: 12px;                    /* Set font size to 12 pixels */
+  color: #999;                        /* Set text color to muted grey */
+  margin: 0 0 20px 0;                 /* Add space below only */
+  font-weight: 300;                   /* Make the text light */
+}
+
+.csl-bib-body {                      /* Target the block of citations inside each column */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  font-weight: 300;                   /* Make the text light */
+  color: rgb(216, 18, 157);           /* Set text color to pink */
+  word-break: break-word;             /* Prevent long URLs from overflowing */
+}
+
+.csl-bib-body a {                    /* Target links inside citations */
+  color: rgb(216, 18, 157);           /* Set link color to match body text */
+}
+
+.csl-bib-body--placeholder {         /* Target the placeholder bibliography column */
+  color: #555;                        /* Set text color to dim grey */
+  font-style: italic;                 /* Italicize the text */
+}
+
+.csl-entry--placeholder {            /* Target each placeholder citation entry */
+  border-left: 2px solid #2a2a2a;     /* Add a marker line on the left */
+  padding-left: 10px;                 /* Add spacing between the line and text */
+  margin-left: -12px;                 /* Pull the line back to align with other entries */
+  text-indent: 0 !important;          /* Cancel the hanging indent used on real citations */
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {          /* Apply these styles only on screens 640px wide or smaller */
+  header {                            /* Target the header on small screens */
+    flex-direction: column;           /* Stack header items top to bottom */
+    align-items: center;              /* Center items horizontally */
+    text-align: center;               /* Center the text */
+    gap: 8px;                         /* Reduce spacing between items */
+  }
+
+  .project-title {                    /* Target the page heading on small screens */
+    font-size: 32px;                  /* Reduce font size to 32 pixels */
+  }
+
+  .bib-columns {                      /* Target the bibliography grid on small screens */
+    grid-template-columns: 1fr;       /* Switch to a single column */
+    gap: 40px;                        /* Add space between the stacked columns */
+  }
 }
