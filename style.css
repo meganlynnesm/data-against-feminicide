@@ -156,12 +156,12 @@ main {                               /* Target the main content area */
   color: rgb(216, 18, 157);           /* Set text color to pink */
   word-break: break-word;             /* Prevent long URLs from overflowing */
 }
-#adding the links detail
+
 .csl-bib-body a {                    /* Target links inside citations */
   color: rgb(216, 18, 157);           /* Set link color to match body text */
   text-decoration: underline;         /* Keep the underline so links are easy to spot */
 }
-#adding the links hover detail
+
 .csl-bib-body a:hover,               /* Target links when hovered or keyboard-focused */
 .csl-bib-body a:focus-visible {
   color: #fff;                        /* Turn white on hover/focus for extra visibility */
