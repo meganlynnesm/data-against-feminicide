@@ -8,7 +8,7 @@ body {                              /* Target the entire page body */
   font-family: 'Roboto', sans-serif;  /* Set the font to Roboto, with sans-serif as backup */
   font-weight: 300;                   /* Set default text thickness to light */
   background-color: #111;             /* Set background color to near-black */
-  color: rgb(255, 255, 255);           /* Set text color to pink */
+  color: rgb(255, 255, 255);           /* Set text color to white */
   margin: 0;                          /* Remove default spacing around the body */
   padding: 0;                         /* Remove default internal spacing */
 }
@@ -62,10 +62,13 @@ main {                               /* Target the main content area */
   padding: 0 20px;                    /* Add 20px left/right padding, no top/bottom */
 }
 
-.project-meta {                      /* Target the year label, e.g. "2026" */
-  font-size: 13px;                    /* Set font size to 13 pixels */
-  color: #999;                        /* Set text color to muted grey */
-  letter-spacing: 0.05em;             /* Add slight space between letters */
+.project-meta {                      /* Target the small eyebrow label above the headline, e.g. "2026" */
+  font-family: 'Roboto Mono', monospace;  /* Match the ribbon's monospace look */
+  font-size: 12px;                    /* Set font size to 12 pixels */
+  font-weight: 700;                   /* Make the label bold */
+  color: rgb(216, 18, 157);           /* Set label color to pink, like the reference's eyebrow text */
+  letter-spacing: 0.08em;             /* Add space between letters */
+  text-transform: uppercase;          /* Convert the label to all capital letters */
 }
 
 .project-title {                     /* Target the main page heading, e.g. "About" */
@@ -147,20 +150,39 @@ main {                               /* Target the main content area */
 }
 
 .csl-bib-body {                      /* Target the block of citations inside each column */
-  font-size: 13px;                    /* Set font size to 13 pixels */
+  font-family: Georgia, 'Times New Roman', Times, serif;  /* Use a serif font to match the reference's academic citation look */
+  font-size: 14px;                    /* Set font size to 14 pixels */
   font-weight: 300;                   /* Make the text light */
-  color: rgb(216, 18, 157);           /* Set text color to pink */
+  color: #ddd;                        /* Set text color to soft white */
   word-break: break-word;             /* Prevent long URLs from overflowing */
+  counter-reset: citation;            /* Start a fresh "[1] [2] [3]..." counter for this column */
 }
 
-.csl-bib-body a {                    /* Target links inside citations */
-  color: rgb(216, 18, 157);           /* Set link color to match body text */
-  text-decoration: underline;         /* Keep the underline so links are easy to spot */
+.csl-entry {                         /* Target each individual citation entry */
+  counter-increment: citation;        /* Advance the counter by 1 for every entry */
+}
+
+.csl-entry::before {                 /* Insert a numbered marker before each citation */
+  content: "[" counter(citation) "] ";  /* Build the "[1] " label from the counter above */
+  color: rgb(216, 18, 157);           /* Set the marker color to pink */
+  font-family: 'Roboto Mono', monospace;  /* Give the marker a monospace look, matching the ribbon */
+  font-weight: 700;                   /* Make the marker bold */
+}
+
+.csl-bib-body a {                    /* Target links inside citations (the DOI/URL line) */
+  display: block;                     /* Push the link onto its own line below the citation text */
+  text-indent: 0;                     /* Cancel the hanging indent for this line */
+  margin-top: 4px;                    /* Add a little space above the link */
+  font-family: 'Roboto Mono', monospace;  /* Give the link a small monospace look, like a DOI */
+  font-size: 12px;                    /* Set font size to 12 pixels */
+  color: #888;                        /* Set link color to muted grey, matching the reference's DOI style */
+  text-decoration: none;              /* Remove the underline for a cleaner look */
 }
 
 .csl-bib-body a:hover,               /* Target links when hovered or keyboard-focused */
 .csl-bib-body a:focus-visible {
-  color: #fff;                        /* Turn white on hover/focus for extra visibility */
+  color: #fff;                        /* Brighten the link on hover/focus */
+  text-decoration: underline;         /* Restore the underline as a hover cue */
 }
 
 .csl-bib-body--placeholder {         /* Target the placeholder bibliography column */
@@ -208,6 +230,7 @@ main {                               /* Target the main content area */
   background-color: #1a1a1a;          /* Set a slightly lighter background than the page */
   padding: 20px 24px;                 /* Add spacing inside the box */
   margin: 24px 0;                     /* Add spacing above/below the box */
+  font-family: Georgia, 'Times New Roman', Times, serif;  /* Use a serif font to match the reference's callout style */
   font-style: italic;                 /* Italicize the text */
   font-size: 14px;                    /* Set font size to 14 pixels */
   line-height: 1.6;                   /* Add breathing room between lines */
