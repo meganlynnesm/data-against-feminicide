@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Precedent Study — Data Against Feminicide</title>
+	<style>
+		:root{--accent:#b3003b;--muted:#666}
+		html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+		.wrap{min-height:100%;display:flex;flex-direction:column}
+		header{padding:24px 28px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between}
+		.brand{display:flex;align-items:center;gap:12px}
+		.logo{width:44px;height:44px;border-radius:6px;background:linear-gradient(135deg,var(--accent),#ff6f91);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+		main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px}
+		.card{max-width:960px;width:100%;background:#fff;border-radius:12px;box-shadow:0 6px 30px rgba(20,20,20,0.06);padding:40px;display:grid;grid-template-columns:1fr 320px;gap:28px}
+		h1{margin:0 0 12px;font-size:28px}
+		p.lead{margin:0 0 18px;color:var(--muted)}
+		.cta{display:flex;gap:12px;margin-top:18px}
+		a.button{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;color:#fff;background:var(--accent)}
+		a.ghost{background:#f3f3f3;color:#111}
+		aside{border-left:1px solid #f0f0f0;padding-left:22px}
+		ul{padding-left:18px;margin:10px 0}
+		footer{padding:18px 28px;border-top:1px solid #eee;color:#777;font-size:13px}
+		@media (max-width:820px){.card{grid-template-columns:1fr;}.logo{width:40px;height:40px}}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<header>
+			<div class="brand">
+				<div class="logo">DAF</div>
+				<div>
+					<div style="font-weight:600">Data Against Feminicide</div>
+					<div style="font-size:13px;color:var(--muted)">Precedent study landing</div>
+				</div>
+			</div>
+			<nav>
+				<a href="#overview" style="margin-right:12px;color:var(--muted);text-decoration:none">Overview</a>
+				<a href="#cases" style="color:var(--muted);text-decoration:none">Cases</a>
+			</nav>
+		</header>
+
+		<main>
+			<section class="card" role="main">
+				<div>
+					<h1>Precedent Study: Research & Patterns</h1>
+					<p class="lead">A concise landing page for an exploratory precedent study into datasets, reporting practices, and legal precedents around feminicide. Use this space to navigate datasets, findings, and methodological notes.</p>
+
+					<div class="cta">
+						<a class="button" href="#start">Explore findings</a>
+						<a class="button ghost" href="#method">Method & notes</a>
+					</div>
+
+					<section id="overview" style="margin-top:28px">
+						<h3 style="margin:0 0 8px">What's here</h3>
+						<ul>
+							<li>Summaries of precedent cases and data visualizations</li>
+							<li>Dataset descriptions and licensing</li>
+							<li>Methodological notes for reproducibility</li>
+						</ul>
+					</section>
+				</div>
+
+				<aside>
+					<h4 style="margin:0 0 10px">Quick links</h4>
+					<ul>
+						<li><a href="#cases">Key cases</a></li>
+						<li><a href="#data">Datasets</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+
+					<div style="margin-top:18px;color:var(--muted);font-size:13px">Status: Prototype — add notes, links to raw data, and visual assets.</div>
+				</aside>
+			</section>
+		</main>
+
+		<footer>
+			© Data Against Feminicide — Precedent study • <a href="#contact">Contact</a>
+		</footer>
+	</div>
+</body>
+</html>
