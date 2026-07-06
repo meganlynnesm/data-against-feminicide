@@ -8,7 +8,7 @@ body {                              /* Target the entire page body */
   font-family: 'Roboto', sans-serif;  /* Set the font to Roboto, with sans-serif as backup */
   font-weight: 300;                   /* Set default text thickness to light */
   background-color: #111;             /* Set background color to near-black */
-  color: rgb(216, 18, 157);           /* Set text color to pink */
+  color: rgb(255, 255, 255);           /* Set text color to pink */
   margin: 0;                          /* Remove default spacing around the body */
   padding: 0;                         /* Remove default internal spacing */
 }
