@@ -73,17 +73,17 @@ main {                               /* Target the main content area */
 
 .project-title {                     /* Target the main page heading, e.g. "About" */
   font-family: Georgia, 'Times New Roman', Times, serif;  /* Use a serif font just for the headline */
-  font-size: 44px;                    /* Set font size to 44 pixels */
+  font-size: 52px;                    /* Set font size to 52 pixels, matching the reference's larger headline scale */
   font-weight: 700;                   /* Make the text bold */
-  line-height: 1.1;                   /* Keep lines close together */
-  margin-top: 8px;                    /* Add small space above */
+  line-height: 1.15;                  /* Keep lines close together, with a touch more room for the bigger size */
+  margin-top: 18px;                   /* Add more space above, separating it from the eyebrow label */
 }
 
 .project-subtitle {                  /* Target the page subheading, e.g. "Bibliography" */
   font-size: 18px;                    /* Set font size to 18 pixels */
   font-weight: 300;                   /* Make the text light */
   color: #999;                        /* Set text color to muted grey */
-  margin-top: 6px;                    /* Add small space above */
+  margin-top: 10px;                   /* Add a bit more space above */
 }
 
 .section-title {                      /* Target elements with class="section-title" */
@@ -229,8 +229,8 @@ main {                               /* Target the main content area */
 .callout {                           /* Target a highlighted callout box, e.g. a "Note" */
   border-left: 3px solid rgb(216, 18, 157);  /* Add a pink accent line on the left */
   background-color: #1a1a1a;          /* Set a slightly lighter background than the page */
-  padding: 20px 24px;                 /* Add spacing inside the box */
-  margin: 24px 0;                     /* Add spacing above/below the box */
+  padding: 24px 28px;                 /* Add spacing inside the box, matching the reference's roomier padding */
+  margin: 32px 0;                     /* Add spacing above/below the box */
   font-family: Georgia, 'Times New Roman', Times, serif;  /* Use a serif font to match the reference's callout style */
   font-style: italic;                 /* Italicize the text */
   font-size: 14px;                    /* Set font size to 14 pixels */
