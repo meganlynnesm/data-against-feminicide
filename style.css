@@ -8,7 +8,7 @@ body {                              /* Target the entire page body */
   font-family: 'Roboto', sans-serif;  /* Set the font to Roboto, with sans-serif as backup */
   font-weight: 300;                   /* Set default text thickness to light */
   background-color: #111;             /* Set background color to near-black */
-  color: rgb(255, 255, 255);           /* Set text color to white */
+  color: #ddd;                         /* Set default text color to soft white */
   margin: 0;                          /* Remove default spacing around the body */
   padding: 0;                         /* Remove default internal spacing */
 }
@@ -27,7 +27,7 @@ header {                             /* Target the top header bar (ribbon nav) *
 
 header .left {                       /* Target the left project label */
   padding: 20px 20px 20px 0;          /* Add spacing around the label */
-  border-bottom: 2px solid #2a2a2a;   /* Draw the grey line under the label */
+  border-bottom: 1px solid #2a2a2a;   /* Draw the grey line under the label */
   color: rgb(216, 18, 157);           /* Set label color to pink */
   font-weight: 700;                   /* Make the label bold */
 }
@@ -41,7 +41,7 @@ header .right {                      /* Target the nav holding the page tabs */
 header .right a {                    /* Target each nav tab */
   padding: 20px;                      /* Add spacing inside each tab */
   border-right: 1px solid #2a2a2a;    /* Draw a divider line after each tab */
-  border-bottom: 2px solid #2a2a2a;   /* Draw the grey line under each tab (lines up with the label's line) */
+  border-bottom: 1px solid #2a2a2a;   /* Draw the grey line under each tab (lines up with the label's line) */
   color: #999;                        /* Set inactive tab color to muted grey */
   text-decoration: none;              /* Remove the default underline */
 }
