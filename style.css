@@ -134,6 +134,7 @@ main {                               /* Target the main content area */
   display: grid;                      /* Arrange children into a grid */
   grid-template-columns: 1fr 1fr;     /* Create 2 equal-width columns */
   gap: 48px;                          /* Add space between the two columns */
+  margin-top: 48px;                   /* Add space above, separating it from the subtitle */
 }
 
 .bib-column-title {                  /* Target each column's heading, e.g. "By Collaborators" */
