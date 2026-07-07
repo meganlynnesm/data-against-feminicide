@@ -245,6 +245,56 @@ main {                               /* Target the main content area */
   margin-right: 6px;                  /* Add a little space after the label */
 }
 
+/* Timeline */
+
+.timeline-row {                      /* Target a single timeline row: year, dot, and text */
+  display: grid;                      /* Lay the three parts out side by side */
+  grid-template-columns: 64px 24px 1fr;  /* Fixed width for the year, fixed width for the dot column, the rest for text */
+}
+
+.timeline-year {                     /* Target the year label on the left */
+  text-align: right;                  /* Right-align the year against the dot column */
+  padding-right: 12px;                /* Add space between the year and the dot */
+  padding-top: 2px;                   /* Nudge down to align with the dot */
+  font-family: 'Roboto Mono', monospace;  /* Match the site's monospace labels */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  font-weight: 700;                   /* Make the year bold */
+}
+
+.timeline-marker {                   /* Target the column holding the dot and connecting line */
+  position: relative;                 /* Let the line be positioned relative to this column */
+  display: flex;                      /* Center the dot horizontally */
+  justify-content: center;            /* Center the dot horizontally within the column */
+}
+
+.timeline-dot {                      /* Target the small circle marking each entry */
+  width: 8px;                         /* Set the dot's width */
+  height: 8px;                        /* Set the dot's height */
+  margin-top: 6px;                    /* Nudge the dot down to align with the year/text */
+  border-radius: 50%;                 /* Turn the square into a circle */
+  background-color: rgb(216, 18, 157);  /* Set the dot color to pink, matching the site's accent color */
+  z-index: 1;                         /* Keep the dot above the connecting line */
+}
+
+.timeline-line {                     /* Target the vertical line connecting one dot to the next */
+  position: absolute;                 /* Position the line independently of normal flow */
+  top: 14px;                          /* Start the line just below the dot */
+  bottom: -16px;                      /* Extend the line down into the next row's gap */
+  width: 1px;                         /* Keep the line thin */
+  background-color: #2a2a2a;          /* Match the grey divider color used elsewhere on the site */
+}
+
+.timeline-text {                     /* Target the description text for each entry */
+  margin: 0 0 24px 0;                  /* Add space below, separating this row from the next */
+  font-size: 15px;                    /* Set font size to 15 pixels */
+  font-weight: 300;                   /* Make the text light */
+  line-height: 1.6;                   /* Add breathing room between lines */
+}
+
+.timeline-row:last-child .timeline-text {  /* Target the description in the final row */
+  margin-bottom: 0;                    /* Remove the extra space after the last entry */
+}
+
 /* Mobile */
 
 @media (max-width: 640px) {          /* Apply these styles only on screens 640px wide or smaller */
