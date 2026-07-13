@@ -35,11 +35,14 @@ header .left {                       /* Target the left project label */
 
 header .right {                      /* Target the nav holding the page tabs */
   display: flex;                      /* Lay the tabs out in a row */
+  flex: 1 1 auto;                     /* Grow to fill the remaining width after the label */
   flex-wrap: wrap;                    /* Allow tabs to wrap onto a new line on narrow screens */
   border-left: 1px solid #2a2a2a;     /* Draw a divider line before the first tab */
 }
 
 header .right a {                    /* Target each nav tab */
+  flex: 1 1 0;                        /* Make every tab share the available width equally */
+  text-align: center;                 /* Center each tab's label within its wider space */
   padding: 20px;                      /* Add spacing inside each tab */
   border-right: 1px solid #2a2a2a;    /* Draw a divider line after each tab */
   border-bottom: 1px solid #2a2a2a;   /* Draw the grey line under each tab (lines up with the label's line) */
@@ -418,6 +421,7 @@ main {                               /* Target the main content area */
   }
 
   header .right a {                   /* Target each tab on small screens */
+    flex: 0 1 auto;                    /* Go back to natural width so wrapped rows don't stretch unevenly */
     padding: 12px 14px;                /* Reduce tab padding */
   }
 

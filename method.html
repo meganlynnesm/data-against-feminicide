@@ -13,15 +13,15 @@
   /* ---- Site navigation ribbon (matches the rest of the site) ---- */
   header.site-nav { display:flex; align-items:center; padding:0 20px; border-bottom:1px solid #2a2a2a; font-family:'Roboto Mono',monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; flex:0 0 auto; }
   header.site-nav .left { padding:20px 20px 20px 0; border-bottom:1px solid #2a2a2a; color:rgb(216,18,157); font-weight:700; }
-  header.site-nav .right { display:flex; flex-wrap:wrap; border-left:1px solid #2a2a2a; }
-  header.site-nav .right a { padding:20px; border-right:1px solid #2a2a2a; border-bottom:1px solid #2a2a2a; color:#999; text-decoration:none; }
+  header.site-nav .right { display:flex; flex:1 1 auto; flex-wrap:wrap; border-left:1px solid #2a2a2a; }
+  header.site-nav .right a { flex:1 1 0; text-align:center; padding:20px; border-right:1px solid #2a2a2a; border-bottom:1px solid #2a2a2a; color:#999; text-decoration:none; }
   header.site-nav .right a:hover, header.site-nav .right a:focus-visible { color:#fff; }
   header.site-nav .right a.active { color:rgb(216,18,157); border-bottom-color:rgb(216,18,157); }
   @media (max-width:640px){
     header.site-nav { flex-direction:column; align-items:stretch; padding:0 16px; }
     header.site-nav .left { padding:16px 0 12px 0; }
     header.site-nav .right { border-left:none; }
-    header.site-nav .right a { padding:12px 14px; }
+    header.site-nav .right a { flex:0 1 auto; padding:12px 14px; }
   }
   .hdr { position:absolute; top:28px; left:36px; z-index:5; pointer-events:none; }
   .hdr h1 { margin:0; color:#ce2e91; font-size:26px; font-weight:800; letter-spacing:0.3px; }
