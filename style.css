@@ -19,6 +19,7 @@ header {                             /* Target the top header bar (ribbon nav) *
   display: flex;                      /* Lay out header items in a row */
   align-items: center;                /* Vertically center the label and tabs */
   padding: 0 20px;                    /* Add left/right spacing inside the header */
+  border-bottom: 1px solid #2a2a2a;   /* Draw the grey line the full width of the header, not just under the tabs */
   font-family: 'Roboto Mono', monospace;  /* Give the ribbon a monospace, code-like feel */
   font-size: 12px;                    /* Set font size to 12 pixels */
   letter-spacing: 0.05em;             /* Add slight space between letters */
