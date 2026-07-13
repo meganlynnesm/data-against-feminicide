@@ -295,6 +295,83 @@ main {                               /* Target the main content area */
   margin-bottom: 0;                    /* Remove the extra space after the last entry */
 }
 
+/* Visual analysis: reference figures */
+
+.palette-figures {                   /* Target the wrapper holding the reference images */
+  display: grid;                      /* Arrange the figures side by side */
+  grid-template-columns: 1fr 1fr;     /* Create 2 equal-width columns */
+  gap: 24px;                          /* Add space between the figures */
+  margin: 24px 0;                     /* Add space above/below the wrapper */
+}
+
+.palette-figure {                    /* Target each individual figure */
+  margin: 0;                          /* Remove the default figure margin */
+}
+
+.palette-figure img {                /* Target the reference image itself */
+  display: block;                     /* Remove the small gap browsers add under inline images */
+  width: 100%;                        /* Fill the figure's width */
+  border: 1px solid #2a2a2a;          /* Add a thin border, matching the site's divider color */
+  border-radius: 8px;                 /* Round the corners slightly */
+}
+
+.palette-figure figcaption {         /* Target the caption under the image */
+  margin-top: 8px;                    /* Add space above the caption */
+  font-size: 12px;                    /* Set font size to 12 pixels */
+  color: #999;                        /* Set text color to muted grey */
+  line-height: 1.5;                   /* Add breathing room between lines */
+}
+
+/* Visual analysis: palette swatches */
+
+.palette-group-label {               /* Target the small label above each palette row, e.g. "Primary brand colors" */
+  font-family: 'Roboto Mono', monospace;  /* Match the site's monospace labels */
+  font-size: 12px;                    /* Set font size to 12 pixels */
+  font-weight: 700;                   /* Make the label bold */
+  color: #999;                        /* Set text color to muted grey */
+  letter-spacing: 0.05em;             /* Add slight space between letters */
+  text-transform: uppercase;          /* Convert the label to all capital letters */
+  margin: 32px 0 12px 0;              /* Add space above and below */
+}
+
+.palette-grid {                       /* Target the grid holding one row of swatches */
+  display: grid;                      /* Arrange the swatches into a grid */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));  /* Fit as many 140px+ columns as will fit */
+  gap: 16px;                          /* Add space between swatches */
+}
+
+.palette-swatch {                    /* Target each individual color card */
+  border: 1px solid #2a2a2a;          /* Add a thin border, matching the site's divider color */
+  border-radius: 8px;                 /* Round the corners slightly */
+  overflow: hidden;                   /* Keep the color chip inside the rounded corners */
+  background-color: #1a1a1a;          /* Set a slightly lighter background than the page */
+}
+
+.palette-chip {                      /* Target the solid color block at the top of each card */
+  height: 72px;                       /* Set a fixed height for the color block */
+}
+
+.palette-chip--short {               /* Target a shorter color block, used for the neutrals row */
+  height: 48px;                       /* Reduce the height */
+}
+
+.palette-meta {                      /* Target the text area below the color block */
+  padding: 10px 12px;                 /* Add spacing inside */
+}
+
+.palette-name {                      /* Target the color's name, e.g. "Coral Red" */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  font-weight: 700;                   /* Make the text bold */
+  margin: 0 0 2px 0;                  /* Add small space below only */
+}
+
+.palette-hex {                       /* Target the hex/rgb value line */
+  font-family: 'Roboto Mono', monospace;  /* Give the value a monospace look */
+  font-size: 11px;                    /* Set font size to 11 pixels */
+  color: #999;                        /* Set text color to muted grey */
+  margin: 0;                          /* Remove default paragraph spacing */
+}
+
 /* Mobile */
 
 @media (max-width: 640px) {          /* Apply these styles only on screens 640px wide or smaller */
@@ -323,5 +400,9 @@ main {                               /* Target the main content area */
   .bib-columns {                      /* Target the bibliography grid on small screens */
     grid-template-columns: 1fr;       /* Switch to a single column */
     gap: 40px;                        /* Add space between the stacked columns */
+  }
+
+  .palette-figures {                  /* Target the reference image grid on small screens */
+    grid-template-columns: 1fr;       /* Switch to a single column */
   }
 }
