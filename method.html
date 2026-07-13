@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Against Feminicide — Objectives Force Graph</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#111111; overflow:hidden; font-family: 'Montserrat', sans-serif; height:100vh; display:flex; flex-direction:column; }
+  #wrap { position:relative; width:100%; flex:1 1 auto; min-height:0; }
+  svg { width:100%; height:100%; display:block; }
+
+  /* ---- Site navigation ribbon (matches the rest of the site) ---- */
+  header.site-nav { display:flex; align-items:center; padding:0 20px; font-family:'Roboto Mono',monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; flex:0 0 auto; }
+  header.site-nav .left { padding:20px 20px 20px 0; border-bottom:1px solid #2a2a2a; color:rgb(216,18,157); font-weight:700; }
+  header.site-nav .right { display:flex; flex-wrap:wrap; border-left:1px solid #2a2a2a; }
+  header.site-nav .right a { padding:20px; border-right:1px solid #2a2a2a; border-bottom:1px solid #2a2a2a; color:#999; text-decoration:none; }
+  header.site-nav .right a:hover, header.site-nav .right a:focus-visible { color:#fff; }
+  header.site-nav .right a.active { color:rgb(216,18,157); border-bottom-color:rgb(216,18,157); }
+  @media (max-width:640px){
+    header.site-nav { flex-direction:column; align-items:stretch; padding:0 16px; }
+    header.site-nav .left { padding:16px 0 12px 0; }
+    header.site-nav .right { border-left:none; }
+    header.site-nav .right a { padding:12px 14px; }
+  }
+  .hdr { position:absolute; top:28px; left:36px; z-index:5; pointer-events:none; }
+  .hdr h1 { margin:0; color:#ce2e91; font-size:26px; font-weight:800; letter-spacing:0.3px; }
+  .hdr p { margin:6px 0 0; color:#c9c8c3; font-size:13px; max-width:520px; line-height:1.45; }
+  .legend { position:absolute; bottom:26px; left:36px; z-index:5; color:#c9c8c3; font-size:12px; line-height:1.9; pointer-events:none; }
+  .legend .row { display:flex; align-items:center; gap:8px; }
+  .legend .sw { width:12px; height:12px; border-radius:50%; display:inline-block; }
+  .credit { position:absolute; bottom:26px; right:36px; z-index:5; color:#6f6e6a; font-size:10.5px; text-align:right; max-width:320px; line-height:1.5; pointer-events:none; }
+  .hint { position:absolute; top:28px; right:36px; z-index:5; color:#6f6e6a; font-size:11px; text-align:right; pointer-events:none; }
+  text.node-label { fill:#ffffff; font-size:12.5px; font-weight:600; pointer-events:none; }
+  text.node-label.hub { fill:#ffffff; font-size:17px; font-weight:800; }
+  text.node-label.pillar { fill:#111111; font-size:15.5px; font-weight:800; }
+  text.node-label.impact { fill:#f3b6d9; font-size:12px; font-weight:700; font-style:italic; }
+  text.node-label.shared { fill:#ffffff; font-size:13.5px; font-weight:800; }
+  circle.node { cursor: grab; }
+  circle.node:active { cursor: grabbing; }
+</style>
+</head>
+<body>
+<header class="site-nav">
+    <div class="left">Datos Contra Feminicidio</div>
+    <nav class="right">
+        <a href="index.html">Brief</a>
+        <a href="team.html">Team</a>
+        <a href="context.html">Context</a>
+        <a href="ontology.html">Ontology</a>
+        <a href="method.html" class="active" aria-current="page">Method</a>
+        <a href="visual-analysis.html">Visual Analysis</a>
+        <a href="bibliography.html">Bibliography</a>
+        <a href="reflection.html">Reflection</a>
+    </nav>
+</header>
+<div id="wrap">
+  <div class="hdr">
+    <h1>How Data Against Feminicide Works</h1>
+    <p>Four objectives — research, tool co-design, community, and training — and how each pushes back against the undercounting of feminicide. Drag any node to explore; the graph resettles around it.</p>
+  </div>
+  <div class="hint">force-directed &middot; drag to explore</div>
+  <div class="legend" id="legend"></div>
+  <div class="credit">Source: datoscontrafeminicidio.net (About, Course, Community, Tools, Publications pages)<br>Diagram: Claude, for Meg. 2026.</div>
+  <svg id="svg"></svg>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var PINK = "#ce2e91";
+  var PINK_SOFT = "rgba(206,46,145,0.55)";
+  var WHITE = "#ffffff";
+  var IMPACT = "#f3b6d9";
+  var GOLD = "#e8a33d";
+  var LINK = "#6f6e6a";
+
+  var groupStyle = {
+    0: { fill: PINK,      r: 58, cls: "hub"    },
+    1: { fill: WHITE,     r: 54, cls: "pillar" },
+    2: { fill: PINK_SOFT, r: 22, cls: ""       },
+    3: { fill: IMPACT,    r: 26, cls: "impact" },
+    4: { fill: GOLD,      r: 34, cls: "shared" }
+  };
+
+  var legendData = [
+    { color: PINK,      label: "Hub — Data Against Feminicide" },
+    { color: WHITE,     label: "Objective (Research / Co-Design / Community / Training)" },
+    { color: PINK_SOFT, label: "Concrete activity" },
+    { color: IMPACT,    label: "How it improves the situation" },
+    { color: GOLD,      label: "Shared outcome" }
+  ];
+
+  var nodes = [
+    { id:"hub",        lines:["DATA AGAINST","FEMINICIDE"],          group:0 },
+
+    { id:"research",   lines:["RESEARCH"],                            group:1 },
+    { id:"codesign",   lines:["CO-DESIGN"],                           group:1 },
+    { id:"community",  lines:["COMMUNITY"],                           group:1 },
+    { id:"training",   lines:["TRAINING"],                            group:1 },
+
+    { id:"r1", lines:["Activist","interviews"],                        group:2 },
+    { id:"r2", lines:["Tracing data","on social media"],                group:2 },
+    { id:"r3", lines:["Publications","& papers"],                      group:2 },
+
+    { id:"c1", lines:["Data","Highlighter"],                          group:2 },
+    { id:"c2", lines:["Email Alerts","System"],                       group:2 },
+    { id:"c3", lines:["Portuguese","localization (BR)"],              group:2 },
+
+    { id:"m1", lines:["Annual Nov.","gatherings"],                    group:2 },
+    { id:"m2", lines:["Collaborative","directory"],                   group:2 },
+    { id:"m3", lines:["Open, multilingual","events"],                 group:2 },
+
+    { id:"t1", lines:["“Theory & Practice”","course"],       group:2 },
+    { id:"t2", lines:["Feminicide","monitoring plans"],               group:2 },
+    { id:"t3", lines:["100+ participants","(2022, Spanish)"],         group:2 },
+
+    { id:"i_research",  lines:["exposes what gets","undercounted"],   group:3 },
+    { id:"i_codesign",  lines:["lightens the load","on activists"],   group:3 },
+    { id:"i_community", lines:["breaks regional","isolation"],        group:3 },
+    { id:"i_training",  lines:["builds local","capacity"],            group:3 },
+
+    { id:"shared", lines:["CONFRONTS THE STATE","WITH EVIDENCE"],     group:4 }
+  ];
+
+  var links = [
+    { source:"hub", target:"research",  value:4 },
+    { source:"hub", target:"codesign",  value:4 },
+    { source:"hub", target:"community", value:4 },
+    { source:"hub", target:"training",  value:4 },
+
+    { source:"research", target:"r1", value:1 },
+    { source:"research", target:"r2", value:1 },
+    { source:"research", target:"r3", value:1 },
+
+    { source:"codesign", target:"c1", value:1 },
+    { source:"codesign", target:"c2", value:1 },
+    { source:"codesign", target:"c3", value:1 },
+
+    { source:"community", target:"m1", value:1 },
+    { source:"community", target:"m2", value:1 },
+    { source:"community", target:"m3", value:1 },
+
+    { source:"training", target:"t1", value:1 },
+    { source:"training", target:"t2", value:1 },
+    { source:"training", target:"t3", value:1 },
+
+    { source:"research",  target:"i_research",  value:2 },
+    { source:"codesign",  target:"i_codesign",  value:2 },
+    { source:"community", target:"i_community", value:2 },
+    { source:"training",  target:"i_training",  value:2 },
+
+    { source:"i_research",  target:"shared", value:2 },
+    { source:"i_codesign",  target:"shared", value:2 },
+    { source:"i_community", target:"shared", value:2 },
+    { source:"i_training",  target:"shared", value:2 }
+  ];
+
+  // A seeded random number generator (the "mulberry32" algorithm).
+  // Math.random() gives a different layout on every reload — this
+  // always produces the same sequence for a given seed, so the graph
+  // starts from (and settles into) the same arrangement every time.
+  var _seed = 1337;
+  function rnd(){
+    _seed |= 0; _seed = (_seed + 0x6D2B79F5) | 0;
+    var t = Math.imul(_seed ^ (_seed >>> 15), 1 | _seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
+
+  // ---- Step 1: select the SVG canvas ----
+  // d3.select() finds an element the same way document.querySelector()
+  // does, but returns a D3 selection you can keep chaining methods onto.
+  var wrapEl = document.getElementById("wrap");
+  var W = wrapEl.clientWidth, H = wrapEl.clientHeight;
+  var svg = d3.select("#svg").attr("viewBox", "0 0 " + W + " " + H);
+  var cx = W / 2, cy = H / 2;
+
+  var linkTargetDist = { 4: 270, 2: 175, 1: 130 };
+
+  // ---- Step 2: give every node a starting position ----
+  // The force simulation needs somewhere to start relaxing from, so we
+  // scatter the hub at the center and everything else in a rough circle
+  // around it using our seeded random numbers from above.
+  nodes.forEach(function(n, i){
+    var a = (i / nodes.length) * Math.PI * 2;
+    var rad = n.group === 0 ? 0 : 260;
+    n.x = cx + Math.cos(a) * rad + (rnd() - 0.5) * 40;
+    n.y = cy + Math.sin(a) * rad + (rnd() - 0.5) * 40;
+    n.r = groupStyle[n.group].r;
+    // "effR" (effective radius) is bigger than the drawn circle for the
+    // small nodes (groups 2/3), because their text label sits just below
+    // them — this keeps a node's label from overlapping its neighbors.
+    n.effR = n.r + ((n.group === 2 || n.group === 3) ? 46 : 6);
+  });
+
+  // ---- Step 3: build the force simulation ----
+  // d3-force never touches the page directly — each tick it just updates
+  // x/y numbers on our node objects. Every .force() call below adds one
+  // rule that gets balanced against all the others:
+  var simulation = d3.forceSimulation(nodes)
+      // pulls linked nodes toward a target distance, like a spring
+      .force("link", d3.forceLink(links)
+        .id(function(n){ return n.id; })
+        .distance(function(l){ return linkTargetDist[l.value] || 120; })
+        .strength(0.5))
+      // pushes every node away from every other node, like magnets
+      .force("charge", d3.forceManyBody().strength(-320))
+      // stops nodes — and the space their labels need — from overlapping
+      .force("collide", d3.forceCollide(function(n){ return n.effR + 7; }))
+      // gently pulls the whole cluster back toward the middle
+      .force("center", d3.forceCenter(cx, cy));
+
+  // Pre-settle the layout for 300 ticks before the first paint, so the
+  // diagram appears already-arranged instead of visibly unfolding.
+  for (var i = 0; i < 300; i++) simulation.tick();
+
+  // ---- Step 4: draw the links ----
+  // This is D3's data-join pattern: give it an array of data and a
+  // selection of (currently empty) elements, and .enter() creates one
+  // new element per item in the array.
+  var link = svg.append("g")
+      .attr("stroke", LINK)
+      .attr("stroke-opacity", 0.55)
+    .selectAll("line")
+    .data(links)
+    .enter().append("line")
+      .attr("stroke-width", function(l){ return Math.sqrt(l.value) * 1.6; });
+
+  // ---- Step 5: draw the nodes ----
+  var node = svg.append("g")
+    .selectAll("circle")
+    .data(nodes)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", function(n){ return n.r; })
+      .attr("fill", function(n){ return groupStyle[n.group].fill; })
+      .attr("stroke", function(n){
+        if (n.group === 2) return PINK;
+        if (n.group === 4) return "#fff";
+        return null;
+      })
+      .attr("stroke-width", function(n){
+        if (n.group === 2) return 1.2;
+        if (n.group === 4) return 1.5;
+        return null;
+      })
+      .attr("stroke-opacity", function(n){ return n.group === 4 ? 0.6 : null; })
+      .call(drag(simulation));
+
+  // ---- Step 6: draw the labels ----
+  // Each label can span multiple lines, so for every node we bind its
+  // "lines" array to a set of <tspan> elements inside one <text>.
+  var label = svg.append("g")
+    .selectAll("text")
+    .data(nodes)
+    .enter().append("text")
+      .attr("class", function(n){ return "node-label " + groupStyle[n.group].cls; })
+      .attr("text-anchor", "middle");
+
+  label.each(function(n){
+    d3.select(this).selectAll("tspan")
+      .data(n.lines)
+      .enter().append("tspan")
+        .attr("x", 0)
+        .attr("dy", function(_, i){ return i === 0 ? 0 : "1.2em"; })
+        .text(function(line){ return line; });
+  });
+
+  function labelOffsetY(n){
+    // hub/pillar/shared labels sit inside the circle (centered);
+    // activity + impact labels sit just below their (smaller) circle
+    if (n.group === 2 || n.group === 3) return n.r + 16;
+    return -((n.lines.length - 1) * 0.6) * (n.group === 0 ? 17 : 14.5);
+  }
+
+  // ---- Step 7: on every tick, copy the simulation's numbers onto the page ----
+  // The simulation only updates n.x/n.y in memory — this "ticked" function
+  // is what actually moves the SVG shapes to match.
+  function ticked(){
+    link
+      .attr("x1", function(l){ return l.source.x; })
+      .attr("y1", function(l){ return l.source.y; })
+      .attr("x2", function(l){ return l.target.x; })
+      .attr("y2", function(l){ return l.target.y; });
+
+    node
+      .attr("cx", function(n){ return n.x; })
+      .attr("cy", function(n){ return n.y; });
+
+    label.attr("transform", function(n){
+      var ty = (n.group === 2 || n.group === 3)
+        ? n.y + n.r + 16
+        : n.y + labelOffsetY(n) + (n.group === 0 ? 6 : 5);
+      return "translate(" + n.x + "," + ty + ")";
+    });
+  }
+  simulation.on("tick", ticked);
+  // The 300-tick pre-settle above already ran to (near) completion, so
+  // the simulation's own timer won't necessarily fire again on its own —
+  // paint the settled positions once immediately so the diagram isn't blank.
+  ticked();
+
+  // ---- Step 8: let people drag nodes around ----
+  // d3.drag() handles mouse AND touch automatically, so unlike a
+  // hand-rolled version this needs no separate mousedown/touchstart code.
+  function drag(sim){
+    function dragstarted(event, n){
+      if (!event.active) sim.alphaTarget(0.3).restart();
+      n.fx = n.x; n.fy = n.y;
+    }
+    function dragged(event, n){
+      n.fx = event.x; n.fy = event.y;
+    }
+    function dragended(event, n){
+      if (!event.active) sim.alphaTarget(0);
+      n.fx = null; n.fy = null;
+    }
+    return d3.drag()
+      .on("start", dragstarted)
+      .on("drag", dragged)
+      .on("end", dragended);
+  }
+
+  // ---- Step 9: build the legend ----
+  // Same enter/append pattern as the nodes above, just for plain HTML
+  // <div> elements instead of SVG shapes.
+  var legendRow = d3.select("#legend")
+    .selectAll(".row")
+    .data(legendData)
+    .enter().append("div")
+      .attr("class", "row");
+
+  legendRow.append("span")
+      .attr("class", "sw")
+      .style("background", function(d){ return d.color; });
+
+  legendRow.append("span")
+      .text(function(d){ return d.label; });
+
+  // ---- Step 10: keep it responsive ----
+  window.addEventListener("resize", function(){
+    W = wrapEl.clientWidth; H = wrapEl.clientHeight;
+    svg.attr("viewBox", "0 0 " + W + " " + H);
+    simulation.force("center", d3.forceCenter(W / 2, H / 2));
+    simulation.alpha(0.3).restart();
+  });
+})();
+</script>
+</body>
+</html>

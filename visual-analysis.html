@@ -4,7 +4,7 @@
     <meta charset="UTF-8">             <!-- Sets character encoding for special characters -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Makes layout responsive on mobile -->
     <title>Data Against Feminicide — Visual Analysis</title>  <!-- Title shown in the browser tab -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">  <!-- Load Google Fonts (Roboto + Roboto Mono) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">  <!-- Load Google Fonts (Montserrat + Roboto Mono) -->
     <link rel="stylesheet" href="style.css">  <!-- Link to our CSS file for styling -->
 </head>
 <body>
@@ -13,11 +13,13 @@
         <div class="left">Datos Contra Feminicidio</div>  <!-- Left side of header with institution name -->
         <nav class="right">                      <!-- Right side navigation between the site's pages -->
             <a href="index.html">Brief</a>
-            <a href="context.html">Context</a>
-            <a href="bibliography.html">Bibliography</a>
             <a href="team.html">Team</a>
+            <a href="context.html">Context</a>
             <a href="ontology.html">Ontology</a>
-            <a href="visual-analysis.html" class="active" aria-current="page">Analysis</a>  <!-- class="active" highlights this tab; aria-current tells screen readers it's the current page -->
+            <a href="method.html">Method</a>
+            <a href="visual-analysis.html" class="active" aria-current="page">Visual Analysis</a>  <!-- class="active" highlights this tab; aria-current tells screen readers it's the current page -->
+            <a href="bibliography.html">Bibliography</a>
+            <a href="reflection.html">Reflection</a>
         </nav>
     </header>
 
@@ -36,10 +38,16 @@
                 <img src="dcf_graphics2.jpg" alt="Collage poster reading &quot;Data Activism Against Feminicide&quot; with black-and-white photo cutouts, a raised fist holding a green flag, and hand-drawn chart doodles">
                 <figcaption>Campaign poster: the collage aesthetic — cutout photography, hand-drawn charts, color-blocked type.</figcaption>
             </figure>
-            <figure class="palette-figure">
-                <img src="dcf_graphics.jpg" alt="Repeating pattern of a black notebook clipped with binder clips over an orange scribble background">
-                <figcaption>Repeating graphic motif used across the site's supporting pages.</figcaption>
-            </figure>
+            <div class="palette-figure-stack">  <!-- Stack the two repeating pattern motifs on top of each other -->
+                <figure class="palette-figure">
+                    <img src="dcf_graphics.jpg" alt="Repeating pattern of a black notebook clipped with binder clips over an orange scribble background">
+                    <figcaption>Repeating graphic motif: notebooks and binder clips, over an orange scribble background.</figcaption>
+                </figure>
+                <figure class="palette-figure">
+                    <img src="herramientas.jpg" alt="Repeating pattern of a hand holding a smartphone, cropped into tilted tiles over a purple grid background">
+                    <figcaption>A second repeating motif in the same format — hands and devices over a purple grid.</figcaption>
+                </figure>
+            </div>
         </div>
 
         <!-- Layout notes -->

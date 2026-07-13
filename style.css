@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Mono:wght@400;700&display=swap');  /* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Roboto+Mono:wght@400;700&display=swap');  /* Import Google Fonts */
 
 * {                                  /* Target every element on the page */
   box-sizing: border-box;             /* Include padding/border in an element's width instead of adding to it */
 }
 
 body {                              /* Target the entire page body */
-  font-family: 'Roboto', sans-serif;  /* Set the font to Roboto, with sans-serif as backup */
+  font-family: 'Montserrat', sans-serif;  /* Set the font to Montserrat, with sans-serif as backup */
   font-weight: 300;                   /* Set default text thickness to light */
   background-color: #111;             /* Set background color to near-black */
   color: #ddd;                         /* Set default text color to soft white */
@@ -224,6 +224,27 @@ main {                               /* Target the main content area */
   color: #555;                        /* Set text color to dim grey */
 }
 
+.prompt-text {                       /* Target the guiding question under a section title */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  font-style: italic;                 /* Italicize the text */
+  color: #999;                        /* Set text color to muted grey */
+  margin: -8px 0 16px 0;              /* Pull up under the section title, add space below */
+  line-height: 1.5;                   /* Add breathing room between lines */
+}
+
+.reference-points {                  /* Target the list of factual anchors under a prompt */
+  margin: 0 0 20px 0;                 /* Add space below only */
+  padding-left: 20px;                 /* Keep default bullet indent */
+  font-size: 13px;                    /* Set font size to 13 pixels */
+  font-weight: 300;                   /* Make the text light */
+  color: #999;                        /* Set text color to muted grey */
+  line-height: 1.6;                   /* Add breathing room between lines */
+}
+
+.reference-points li {               /* Target each reference point */
+  margin-bottom: 6px;                 /* Add space below each item */
+}
+
 /* Callout box */
 
 .callout {                           /* Target a highlighted callout box, e.g. a "Note" */
@@ -306,6 +327,12 @@ main {                               /* Target the main content area */
 
 .palette-figure {                    /* Target each individual figure */
   margin: 0;                          /* Remove the default figure margin */
+}
+
+.palette-figure-stack {              /* Target a column that stacks two figures on top of each other */
+  display: flex;                      /* Lay the figures out in a column */
+  flex-direction: column;             /* Stack them top to bottom */
+  gap: 24px;                          /* Add space between the stacked figures */
 }
 
 .palette-figure img {                /* Target the reference image itself */
